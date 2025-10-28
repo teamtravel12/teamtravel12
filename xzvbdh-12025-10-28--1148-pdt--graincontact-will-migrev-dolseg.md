@@ -2,7 +2,7 @@
 
 **created:** 12025-10-28--1148-pdt  
 **grainorder:** xzvbdh  
-**context:** hacker news / urbit connection  
+**context:** urbit hawk group discovery  
 **energy:** immediate resonance, moon cycle synchronicity 🌙
 
 ---
@@ -23,7 +23,7 @@
 
 ## connection story
 
-will discovered teamkae3gtravel12 repo on hacker news (oct 28, 2025) and immediately resonated:
+kae3g shared teamkae3gtravel12 repo in will's hawk group on urbit (oct 28, 2025). will immediately resonated:
 
 > "wow"  
 > "i love this so much"  
@@ -37,7 +37,7 @@ will discovered teamkae3gtravel12 repo on hacker news (oct 28, 2025) and immedia
 - moon cycle integration
 - actually *built* not just conceptual
 
-**synchronicity:** will was already exploring monospaced ideation with lunar phases independently - we found each other through the cosmic timing of that HN post! 🌊⚡
+**synchronicity:** will was already exploring monospaced ideation with lunar phases independently - we found each other through urbit's peer-to-peer channels, then kae3g posted to hacker news! 🌊⚡
 
 ## contact channels
 
