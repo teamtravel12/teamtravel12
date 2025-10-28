@@ -7,7 +7,7 @@
 
 ---
 
-**grainbranch**: `glow-g2-teamtravel12--12025-10-27--0145-PDT--moon-purvashadha-asc-leo023-sun-04h--teamtravel12`  
+**grainbranch**: `12025-10-28--1130-PDT--moon-uttaradha-asc-arie23-sun-12h--teamtravel12`  
 **team**: team 12 - travel (pisces ♓ / xii. the hanged man)  
 **voice**: glow g2 (patient listening teacher)  
 **focus**: flow, trust, perspective shift, letting go  
@@ -230,7 +230,7 @@ what brought you here? what are you searching for?
 **org repo**: https://github.com/teamtravel12/teamtravel12  
 **personal repo**: https://github.com/kae3g/teamkae3gtravel12  
 **main monorepo**: https://github.com/kae3g/grainkae3g  
-**grainbranch**: `glow-g2-teamtravel12--12025-10-27--0145-PDT--moon-purvashadha-asc-leo023-sun-04h--teamtravel12`
+**grainbranch**: `12025-10-28--1130-PDT--moon-uttaradha-asc-arie23-sun-12h--teamtravel12`
 
 *now == next + 1* 🌾
 
