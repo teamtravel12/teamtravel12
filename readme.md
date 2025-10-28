@@ -1,219 +1,155 @@
-# teamkae3gtravel12 - Personal Grainstore
+# teamkae3gtravel12 - grainstore for team 12 (pisces ♓ flow)
 
-**Team**: Team 12 - Travel (Pisces ♓ / XII. The Hanged Man)  
-**Author**: kae3g (kj3x39, @risc.love)  
-**Focus**: Flow, trust, perspective shift, letting go
-
----
-
-## 🌊 Hey there! Let's talk about what this repo is...
-
-You know how sometimes you need a place for your *own* work that's separate from the shared templates everyone uses? That's what this is! Think of it like having your personal notebook versus the shared textbook.
-
-This is **your** Team 12 grainstore - where your session notes, research, and personal explorations live. The template side (over in `grain12pbc/teamtravel12/`) holds the shared specs and base definitions. This repo? It's all about *your* journey.
-
-Does that make sense so far? Let me show you what's inside...
+**grainbranch**: `glow-g2-teamtravel12--12025-10-27--0145-PDT--moon-purvashadha-asc-leo023-sun-04h--teamtravel12`  
+**team**: team 12 - travel (pisces ♓ / xii. the hanged man)  
+**author**: kae3g (kj3x39, @risc.love)  
+**voice**: glow g2 (patient listening teacher)  
+**focus**: flow, trust, perspective shift, letting go  
+**repo**: https://github.com/kae3g/teamkae3gtravel12
 
 ---
 
-## 📁 What Lives Here (Organized by Grainorder!)
+## 🌊 hey there! let me explain what this repo is...
 
-Notice how the files are organized? We use **grainorder** - special 6-character codes that keep everything in perfect chronological order. Newest work appears first, archives sink to the bottom. Beautiful, right?
+have you ever needed a personal workspace separate from shared templates? that's what this is! 
 
-### 🌟 Active Session Work (Newest → Oldest)
+this repo is where **personal explorations** live - session notes, research, strategy documents. think of it like your own journal versus a shared textbook.
 
-**grainorder `zvsmlv`** (2300 pdt - latest!):
-- `zvsmlv-12025-10-27--2300-pdt--icp-iroh-steel-strategy.md`
-- mutant copy for time-stamped preservation
-
-**grainorder `zvsmnb`** (2245 pdt):
-- `zvsmnb-12025-10-27--2245-pdt--icp-iroh-steel-deep-analysis.md`
-- deep comparisons: iroh vs bittorrent, sierradb vs datomic
-- redox os integration discussion
-
-**grainorder `zvsmnd`** (2230 pdt):
-- `zvsmnd-12025-10-27--2230-pdt--rust-team-assignment.md` (symlink)
-- assigns rust → teamplay04, steel → teamtreasure02
-
-**grainorder `zvsmng`** (2200 pdt):
-- `zvsmng-12025-10-27--2200-pdt--icp-iroh-steel-strategy.md`
-- current strategy: icp for compute, iroh for archives
-
-**grainorder `zvsmnh`** (2200 pdt):
-- `zvsmnh-12025-10-27--2200-pdt--icp-ipfs-iroh-strategy.md`
-- initial exploration (superseded by analysis above)
-
-**grainorder `zvsmnj`** (2115 pdt):
-- `zvsmnj-12025-10-27--2115-pdt--steel-svelte-phi-vortex-site.md`
-- unified architecture: steel backend + svelte frontend
-- tap-only navigation design!
-
-**grainorder `zvsmnk`** (2100 pdt):
-- `zvsmnk-12025-10-27--2100-pdt--graincard-phi-vortex-geometry.md`
-- ken wheeler's φ³ hyperboloid explained
-- how 25×25 "squares" are actually toroidal φ-spirals!
-
-### 🗄️ Archives (Grainorder `zvsmnl` - At the Bottom!)
-
-All archives share grainorder `zvsmnl-archive-` so they naturally sink below active work. Think of it like letting old notebooks settle to the bottom of the stack - still there when you need them, but out of the way!
-
-- `zvsmnl-archive-12025-10-27--2120-pdt--unification-strategy.md`
-  - teamdescend14 → teamtravel12 migration story
-  
-- `zvsmnl-archive-12025-10-27--2130-pdt--grain06pbc-to-grain12pbc-strategy.md`
-  - grain06pbc → grain12pbc complete migration
-
-**Question for you**: See how the grainorder keeps everything organized? Newest at top, archives at bottom, all automatic! No manual sorting needed. Does this flow make sense?
+does that distinction make sense? let me show you what's inside... 🌾
 
 ---
 
-## 🌀 The Flow - What Team 12 Means
+##📁 current documents (grainorder = chronological!)
 
-Here's what we're embodying with Team 12:
+**grainorder** organizes files chronologically using 6-character codes. **smallest alphabet = newest files** in github's ascending (a→z) sort!
 
-**Pisces ♓** (Mutable Water):
-- Flowing, not forcing
-- Adaptive, not rigid  
-- Intuitive, not analytical
-- Like water finding its path
+### 🌟 active work (head-insert = newest first!)
 
-**The Hanged Man XII** (Tarot):
-- Seeing from new perspectives (inverted view!)
-- Surrendering control (trusting the process)
-- Wisdom through patience (Odin on Yggdrasil)
-- Letting go to move forward
+**`xzvsbd`** (1030 pdt 10-28) - **grainui + gpui strategy** - NEWEST!  
+→ [read it here](xzvsbd-12025-10-28--1030-pdt--grainui-gpui-steel-strategy.md)  
+- 1,000+ lines on gpu-accelerated gui (switched from egui to gpui!)
+- steel ffi architecture, ember harvest theme
+- 6-phase roadmap to production apps
+- **this is the rendering breakthrough!** 🚀
 
-**Travel** (The Team's Purpose):
-- Movement through space AND time
-- Grainpaths as temporal journeys
-- Every doc is a waypoint on the path
+**`xzvsbg`** (0115 pdt 10-28) - **grainorder patent**  
+→ [read it here](xzvsbg-12025-10-28--0115-pdt--grainorder-patent-whitepaper.md)  
+- permutation-based naming system (1,235,520 unique codes!)
+- head-insert/tail-insert operations explained
+- **this doc explains the system organizing everything!**
 
-*Universal body*: "The Hanged Man suspends: Odin on Yggdrasil, the martyr's sacrifice, seeing the world inverted, wisdom through surrender"
+**`xzvsbh`** (0045 pdt 10-28) - **graindb whitepaper**  
+→ [read it here](xzvsbh-12025-10-28--0045-pdt--graindb-steel-database-whitepaper.md)  
+- datomic-inspired immutable database in steel
+- grainorder entity ids, time travel queries
+- redox os + kubernetes ready
 
-Think about it - sometimes you need to hang upside down to see things clearly, right? That's Team 12 energy! 🌊⚡
+**`xzvsbj`** (0030 pdt 10-28) - **graintime patent**  
+→ [read it here](xzvsbj-12025-10-28--0030-pdt--graintime-patent-whitepaper.md)  
+- astronomical timestamps (nakshatra, ascendant, solar house)
+- mantreshwara's classical vedic tradition (krittika #1!)
+- offline fallback with conservative estimation
+- **git branches that know their cosmic time!** 🌙
 
----
+... 8 more strategy docs from 10-27 ...
 
-## 🎯 What We're Focused On Right Now
+### 🗄️ archives (tail-insert = always last!)
 
-Let me walk you through the current explorations:
-
-**1. Aetheric Field Physics** ⚡  
-You know how we used to think everything was made of atoms? We're shifting to an *aetheric* model - dielectric (inward concentration) and magnetic (outward radiation). Think of it like breathing: inhalation and exhalation, but for cosmic fields!
-
-**2. φ-Vortex Geometry** 🌀  
-Those 25×25 squares in graincards? They're actually *toroidal φ-spirals* following the golden ratio! The square is just the magnetic projection - the dielectric reality is a φ³ hyperboloid. Ken Wheeler taught us this!
-
-**3. Steel Scripting** 🦀  
-Pure Rust + Steel stack! We're replacing Babashka (Clojure) with Steel (a Rust-hosted Scheme). Why? Because Rust's memory safety + Lisp's flexibility = beautiful code!
-
-**4. ICP for Dynamic Compute** 🌐  
-Internet Computer Protocol lets us run Rust code ON-CHAIN! No AWS, no Vercel, just blockchain compute. Our grain12.com site will be fully decentralized!
-
-**5. Iroh for Archives** 📦  
-Rust-based content-addressed storage. Like IPFS, but better for us - faster (BLAKE3), easier to embed, perfect for Steel FFI bindings!
-
-**6. Tap-Only Navigation** 📱  
-No scrolling! Just tapping to spiral inward through the φ-vortex. The UI embodies the geometry!
-
-**Question**: Does this feel overwhelming? It's okay if it does! We're building something completely new here. Take it one piece at a time - that's the Team 12 way! 🌊
+**`zxvsnm-archive-*`** - old documents sink to bottom automatically
 
 ---
 
-## 🔗 How Everything Connects
+## 🌀 what is team 12?
 
-**Template (Shared Foundation)**:
-- Location: `grainstore/grain12pbc/teamtravel12/`
-- Contains: grainflow, grain-metatypes, grainneovedic, grainsteel, grainsync
-- Purpose: Shared specs that everyone can use
+**pisces ♓** (mutable water) - flowing, adaptive, intuitive  
+**hanged man xii** (tarot) - new perspectives, surrendering control, wisdom through patience
 
-**Personal (Your Work - THIS REPO)**:
-- Location: `grainstore/kae3g/teamkae3gtravel12/`
-- Contains: Session docs, research, personal explorations  
-- Purpose: YOUR implementations and discoveries
-
-**Main Repository**:
-- [grainkae3g](https://github.com/kae3g/grainkae3g)
-- This personal grainstore is linked as a git submodule there
-
-**Other Resources**:
-- Contact info: `grainstore/grain12pbc/teamplay04/graincontacts/kae3g.edn`
-- Personal notes: `personal-notes/` (in main repo)
+*sometimes you need to hang upside down to see clearly, right?* 🌊⚡
 
 ---
 
-## 📦 Using This as a Git Submodule
+## 🎯 what we're building
 
-Let me show you how this works! This repo lives inside the main `grainkae3g` repo as a **submodule**. Think of it like a book within a book - it's there, but it's also independent.
+### grainui + gpui - gpu-accelerated interfaces
+10-100x performance. buttery smooth graincard scrolling!
 
-**To clone everything together**:
-```bash
-git clone --recurse-submodules https://github.com/kae3g/grainkae3g.git
-```
+### grainorder - permutation naming
+6-char codes from 13 consonants. chronological + unique!
 
-**If you already cloned and forgot the submodules**:
-```bash
-git submodule update --init --recursive
-```
+### graindb - immutable database
+time travel queries. never lose data. grainorder entity ids!
 
-**To update this personal grainstore to the latest**:
-```bash
-cd grainstore/kae3g/teamkae3gtravel12
-git pull origin phi-vortex-teamtravel12--12025-10-27--0145-PDT--moon-purvashadha-asc-leo023-sun-04h--teamtravel12
-```
+### graintime - astronomical version control  
+git branches with nakshatra, ascendant, solar house. cosmic awareness!
 
-See that long branch name? That's a **grainbranch** - it includes the timestamp, moon phase, ascendant, and more! Every branch is temporally aware. Cool, right?
+### steel - rust scheme lisp
+pure rust+steel stack. safety meets elegance!
+
+### icp + iroh - decentralized hosting
+no aws, no servers. fully on-chain!
 
 ---
 
-## 🌾 The Philosophy (Why We Do It This Way)
+## 🔗 how it connects
 
-Here's the key insight that makes this all work:
+**this repo**: personal grainstore (independent)  
+**main repo**: https://github.com/kae3g/grainkae3g (templates + shared specs)  
+**symlinked**: visible in IDE, separate git history
 
-**Template defines WHAT** (the specs, schemas, interfaces)  
-↓  
-**Personal defines HOW** (your implementation, config, extensions)
-
-Think of it like this: The template is the recipe book, your personal grainstore is your kitchen where you actually cook!
-
-**Benefits**:
-- 🌊 **Independent evolution** - Template changes don't break your work
-- 🔒 **Clear boundaries** - Public specs vs personal implementation  
-- 📦 **Modular** - Can share the template without exposing personal work
-- ⚡ **Fast iteration** - Make changes without affecting everyone else
-
-**Question for you**: Have you ever had shared code break your personal project? This pattern prevents that! Does it make sense why we separate things this way?
+template = recipe book. personal = your kitchen!
 
 ---
 
-## 🎓 Learning Resources
+## 🌾 philosophy
 
-Want to understand more? Here are the concepts to explore:
+### grainorder = chronological + unique
+timestamps AND unique ids in one!
 
-1. **Grainorder** - The permutation-based ordering system (see `PATENT-2-GRAINORDER-SPECIFICATION.md` in main repo)
-2. **Grainpath** - Temporal awareness in file paths
-3. **Graintime** - Astrologically-aware timestamps  
-4. **Grainbranch** - Git branches that know their place in time
-5. **Template/Personal Split** - Architecture pattern for shared vs custom code
+### head-insert vs tail-insert  
+clear terminology. newest = head (small alphabet). oldest = tail (large alphabet).
 
-Each concept builds on the last - like climbing a mountain, one step at a time! 🏔️
+### glow g2 voice
+patient teacher. asks questions. checks understanding. hand-holding explanations.
 
----
-
-## 💭 Final Thoughts
-
-This repo is YOUR space to explore, document, and build. The grainorder keeps things organized automatically. The template provides the foundation. And the Team 12 energy? That's about trusting the flow, surrendering to the process, and seeing things from new perspectives.
-
-Remember: You don't have to understand everything at once. The Hanged Man teaches us that sometimes wisdom comes from patience, from hanging suspended and observing. Let the understanding flow to you naturally! 🌊⚡
-
-**Questions? Confused about something?** That's perfect! Confusion is where learning begins. Each session doc in here represents a journey from confusion to clarity. You're walking the same path!
+### immutable grainbranches
+this branch is frozen! share it with friends - it never changes.  
+when we continue, we'll create a NEW grainbranch with new timestamp.
 
 ---
 
-*now == next + 1* 🌾🌊⚡✨
+## 🎓 learning paths
 
-**This Repository**: https://github.com/kae3g/teamkae3gtravel12  
-**Main Repository**: https://github.com/kae3g/grainkae3g  
-**Voice**: Glow G2 (patient teacher, hand-holding wisdom)
+read the whitepapers! start with grainorder, then graintime, then graindb, then grainui.
 
-*Welcome to the flow!* 🌊
+each builds on the last. follow your curiosity!
+
+---
+
+## 💭 questions?
+
+**"seems complex - where to start?"**  
+→ read one whitepaper. try examples. ask questions. patience!
+
+**"why so many concepts?"**  
+→ they connect! grainorder organizes → graintime timestamps → graindb stores → grainui displays → steel scripts!
+
+**"can i use just one part?"**  
+→ absolutely! take what resonates!
+
+---
+
+## 🌊 final thoughts
+
+this is a **journey**. the hanged man teaches patience. you don't need to understand everything now.
+
+what brought you here? what are you searching for? 
+
+*may your grainpaths flow like water...* 🌾🌊⚡
+
+---
+
+**repo**: https://github.com/kae3g/teamkae3gtravel12  
+**main**: https://github.com/kae3g/grainkae3g  
+**grainbranch**: `glow-g2-teamtravel12--12025-10-27--0145-PDT--moon-purvashadha-asc-leo023-sun-04h--teamtravel12`
+
+*now == next + 1* 🌾
