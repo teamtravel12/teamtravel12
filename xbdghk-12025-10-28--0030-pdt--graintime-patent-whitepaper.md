@@ -752,6 +752,261 @@ let me walk you through the patent search we did...
 
 ---
 
+## offline fallback & resilience (handling edge cases)
+
+### the problem: what happens when the stars are hidden?
+
+let me tell you about a critical edge case: **what happens when the network is down?**
+
+traditional graintime relies on astronomical apis (swiss ephemeris, astro-seek) for calculations. but what if:
+- ❌ no network connection (airplane mode, rural areas)
+- ❌ api rate limits hit
+- ❌ service outages  
+- ❌ air-gapped systems (secure environments)
+
+**current behavior without fallback**: crash with error! ❌
+
+**better behavior**: graceful degradation with conservative guesses! ✅
+
+### the solution: offline fallback + deferred verification
+
+instead of crashing, we use a **three-phase approach**:
+
+#### phase 1: conservative guess (immediate)
+
+when apis are unavailable, make educated guesses based on:
+
+**1. system time + timezone** (no api needed!):
+```steel
+;; simple hour-based solar house approximation
+(define (guess-solar-house hour)
+  (cond
+    [(and (>= hour 6) (< hour 9))   1]   ; sunrise
+    [(and (>= hour 9) (< hour 12))  11]  ; mid-morning
+    [(and (>= hour 12) (< hour 15)) 10]  ; noon
+    [(and (>= hour 15) (< hour 18)) 8]   ; afternoon
+    [(and (>= hour 18) (< hour 21)) 7]   ; sunset
+    [(and (>= hour 21) (< hour 24)) 5]   ; evening
+    [else 4]))                            ; midnight
+
+;; accuracy: ±1-2 houses (good enough for offline!)
+```
+
+**2. previous graintime** (cached locally):
+```steel
+;; estimate nakshatra based on last known value
+(define (guess-nakshatra last-graintime hours-elapsed)
+  (let* ([nakshatra-duration 13.3]  ; hours per nakshatra
+         [shifts (floor (/ hours-elapsed nakshatra-duration))]
+         [last-index (nakshatra->index (:moon-nakshatra last-graintime))]
+         [new-index (modulo (+ last-index shifts) 27)])
+    (index->nakshatra new-index)))
+
+;; accuracy: usually correct same-day, ±1 nakshatra multi-day
+```
+
+**3. latitude-based ascendant approximation**:
+```steel
+;; conservative ascendant estimate
+(define (guess-ascendant hour latitude)
+  (let* ([lat-factor (if (> (abs latitude) 40) 1.5 1.0)]
+         [sign-index (modulo (floor (/ (* hour lat-factor) 2)) 12)]
+         [sign (list-ref zodiac-signs sign-index)]
+         [degree "000"])  ; always use 000 when offline (conservative!)
+    (string-append "asc-" sign degree)))
+
+;; accuracy: ±1 sign (acceptable, but MUST verify online later!)
+```
+
+#### phase 2: mark for verification (deferred)
+
+append `-OFFLINE` suffix to graintime and save to verification queue:
+
+```steel
+;; offline graintime structure
+(struct offline-graintime
+  (datetime          ; when it was generated
+   estimated-values  ; our conservative guesses
+   verification-status  ; :pending, :verified, :discrepancy
+   generated-at-timestamp
+   offline-flag)     ; true
+  #:transparent)
+
+;; save to verification queue
+(define verification-queue-path "~/.config/grain6/graintime-verify-queue.edn")
+
+(define (enqueue-for-verification! graintime)
+  (let ([queue (read-queue verification-queue-path)])
+    (write-queue verification-queue-path
+                 (cons graintime queue))))
+
+;; example output:
+;; "feature-login--12025-10-28--0945-pdt--moon-vishakha--asc-gem000--sun-03h--kae3g-OFFLINE"
+;;                                                                                    ^^^^^^^^
+;;                                                                              note the flag!
+```
+
+#### phase 3: automatic verification (when online)
+
+when network restores, grain6 daemon automatically verifies:
+
+```steel
+;; verification daemon (runs on network restore)
+(define (verify-offline-graintimes!)
+  (let ([queue (read-queue verification-queue-path)])
+    (for-each (lambda (offline-gt)
+                ;; recalculate with actual apis
+                (let* ([accurate-gt (graintime-calculate 
+                                      (:datetime offline-gt)
+                                      (:latitude offline-gt)
+                                      (:longitude offline-gt))]
+                       [discrepancies (compare-graintimes offline-gt accurate-gt)])
+                  
+                  ;; log any differences (educational!)
+                  (when (not (empty? discrepancies))
+                    (log-discrepancy! offline-gt accurate-gt discrepancies))
+                  
+                  ;; update git branch name if needed
+                  (when (:should-update? discrepancies)
+                    (update-branch-name! offline-gt accurate-gt))
+                  
+                  ;; mark as verified
+                  (mark-verified! offline-gt)))
+              queue)))
+
+;; example verification log:
+;; ✅ offline guess: asc-gem000, accurate: asc-gem012 (12° difference - acceptable!)
+;; ✅ offline guess: sun-03h, accurate: sun-03h (perfect match!)
+;; ⚠️  offline guess: moon-vishakha, accurate: moon-anuradha (nakshatra shifted!)
+```
+
+### user experience flows
+
+**when offline** (immediate feedback):
+```
+🌾 generating graintime...
+
+⚠️  network unavailable - using offline fallback
+
+╔══════════════════════════════════════════════════════════════╗
+║  ⚠️  OFFLINE MODE: conservative graintime estimate ⚠️        ║
+╚══════════════════════════════════════════════════════════════╝
+
+🌾 network unavailable - using educated guess based on:
+   - last known graintime: 12025-10-28--0145-pdt--moon-purvashadha...
+   - system time: 12025-10-28T09:45:00
+   - conservative solar house: 3rd house (pre-dawn)
+   - estimated nakshatra: purvashadha
+   - approximate ascendant: leo000
+
+🔧 grain6 verification flag set:
+   - when network restored, grain6 daemon will verify this timestamp
+   - accurate graintime will be calculated retroactively
+   - verification queue: ~/.config/grain6/graintime-verify-queue.edn
+
+💡 to check verification status: git branch --list "*-OFFLINE"
+
+graintime: 12025-10-28--0945-pdt--moon-purvashadha--asc-leo000--sun-03h--kae3g-OFFLINE
+```
+
+**when network restored** (automatic background):
+```
+🌾 grain6 network restoration detected
+
+📡 processing verification queue...
+   - found 3 pending offline graintimes
+   
+✅ verifying: 12025-10-28--0945-pdt--moon-purvashadha--asc-leo000--sun-03h-OFFLINE
+   api response: sun-03h ✓ (match!)
+   api response: moon-purvashadha ✓ (match!)
+   api response: asc-leo005 ⚠️  (offline: leo000, actual: leo005)
+   
+📝 educational discrepancy log:
+   offline guess: ascendant leo 000°
+   actual value:  ascendant leo 005°
+   difference:    5° (excellent for offline!)
+   
+🔄 updating git branch name:
+   old: feature-login--...-OFFLINE
+   new: feature-login--...-asc-leo005 (verified!)
+   
+✅ verification complete! all offline graintimes validated.
+```
+
+### patent claims for offline fallback
+
+**claim 9 (dependent - offline fallback)**:
+the method of claim 1, further comprising:
+- detecting network unavailability when querying astronomical ephemeris;
+- generating conservative graintime estimates based on system time, cached previous graintime, and latitude;
+- appending an offline indicator to said graintime string;
+- enqueuing said offline graintime for deferred verification;
+- automatically re-calculating accurate graintime when network connectivity is restored;
+- comparing offline estimates with accurate calculations;
+- logging discrepancies for educational purposes;
+- updating version control metadata with verified graintime.
+
+**claim 10 (dependent - verification queue)**:
+the system of claim 6, further comprising:
+- a verification queue storing offline-generated graintimes;
+- a network restoration detector monitoring connectivity state;
+- a verification daemon that processes queued graintimes when online;
+- a discrepancy logger recording differences between offline estimates and accurate calculations;
+whereby offline operation is gracefully degraded rather than failed.
+
+### benefits of offline fallback
+
+**1. graceful degradation**:
+- never crash when offline! ✅
+- always generate *some* graintime
+- clear warnings to user about accuracy
+
+**2. educational transparency**:
+- show discrepancies when verified
+- teach users about astronomical precision
+- build trust through honesty about limitations
+
+**3. deferred processing pattern**:
+- queue work for later (grain6 supervision)
+- automatic correction when possible
+- no manual intervention needed
+
+**4. local control, global intent**:
+- work offline (local control) 💻
+- verify when online (global intent) 🌐
+- user always knows the status 🎯
+
+**5. air-gapped system support**:
+- secure environments (military, healthcare, finance)
+- no external api dependencies required
+- pre-downloaded ephemeris data (future enhancement)
+
+### future enhancements for offline mode
+
+**1. pre-downloaded swiss ephemeris**:
+- download astronomical data for common locations
+- 100% offline accuracy (no apis needed!)
+- periodic updates (monthly/yearly)
+
+**2. machine learning refinement**:
+- learn from past offline guesses
+- improve accuracy over time
+- user-specific patterns (sleep schedule, typical work hours)
+
+**3. peer-to-peer verification**:
+- ask nearby grain6 nodes for their calculations
+- distributed astronomical database
+- mesh network support for offline clusters
+
+**4. progressive accuracy levels**:
+- level 1: hour-based (very rough, ±2 houses)
+- level 2: cached progression (good, ±1 nakshatra)
+- level 3: downloaded ephemeris (perfect, 0° error)
+
+**question**: does it make sense why offline fallback is critical? developers work on planes, in coffee shops with bad wifi, in secure facilities. graintime should work *everywhere*! 🌍✈️🔒
+
+---
+
 ## implementation reference
 
 **where to find the code**:
