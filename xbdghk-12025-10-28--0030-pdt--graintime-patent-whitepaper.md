@@ -167,15 +167,17 @@ let me show you the full flow, then we'll break down each piece:
 1. get moon's sidereal longitude (0-360°) using swiss ephemeris
 2. calculate nakshatra width: 360° ÷ 27 = 13.333° (or 13°20')
 3. find nakshatra index: floor(longitude ÷ 13.333)
-4. map index to nakshatra name:
-   0 → ashwini, 1 → bharani, ..., 17 → mula, ..., 26 → revati
+4. map index to nakshatra name (mantreshwara/classical order):
+   0 → krittika, 1 → rohini, ..., 16 → mula, ..., 25 → ashwini, 26 → bharani
 ```
 
 **example** (october 26, 2025, 17:00 pdt):
 - moon's sidereal longitude: 246.42°
 - nakshatra index: floor(246.42 ÷ 13.333) = floor(18.48) = 18
-- nakshatra #18 = mula (the root, ruled by kali)
-- output: `moon-mula` 🌙
+- nakshatra #18 in classical order = uttara-ashadha
+- output: `moon-uttara-ashadha`
+
+**note**: in mantreshwara's classical vedic tradition, krittika (0° aries) is the first nakshatra, symbolizing the fire of aries/mesha. this aligns perfectly with aries as the first zodiac sign! 🌙
 
 **steel implementation** (ascending sort - oldest to newest):
 
@@ -186,13 +188,15 @@ let me show you the full flow, then we'll break down each piece:
 (require "steel/time")
 (require "steel/math")
 
-;; the 27 nakshatras in order (0-26)
+;; the 27 nakshatras in classical vedic order (mantreshwara tradition)
+;; krittika is #1 (0°aries) - aligns with aries/mesha as first sign
+;; this follows the sage mantreshwara's enumeration from phaladeepika
 (define nakshatras
-  '("ashwini" "bharani" "krittika" "rohini" "mrigashira" "ardra" 
-    "punarvasu" "pushya" "ashlesha" "magha" "purva-phalguni" "uttara-phalguni"
-    "hasta" "chitra" "swati" "vishakha" "anuradha" "jyeshtha"
-    "mula" "purva-ashadha" "uttara-ashadha" "shravana" "dhanishta" "shatabhisha"
-    "purva-bhadrapada" "uttara-bhadrapada" "revati"))
+  '("krittika" "rohini" "mrigashira" "ardra" "punarvasu" "pushya" 
+    "ashlesha" "magha" "purva-phalguni" "uttara-phalguni" "hasta" "chitra"
+    "swati" "vishakha" "anuradha" "jyeshtha" "mula" "purva-ashadha"
+    "uttara-ashadha" "shravana" "dhanishta" "shatabhisha" "purva-bhadrapada"
+    "uttara-bhadrapada" "revati" "ashwini" "bharani"))
 
 ;; calculate nakshatra from moon's sidereal longitude
 ;; input: longitude in degrees (0-360)
